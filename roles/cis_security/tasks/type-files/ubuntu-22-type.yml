@@ -1103,137 +1103,140 @@
 # This collection of tasks creates a empty list and save it as a fact.
 #  For every item that is encountered (without the tag being skipped),
 #  add a string to the list.
-- name: 2.2.2 - Create empty list for unneeded packages
-  ansible.builtin.set_fact:
-    unneeded_packages: []
 
-- name: 2.2.2 - Remove avahi; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'avahi' ] }}"
+- name: Remove avahi package on Debian-based systems
+  apt:
+    name: avahi
+    state: absent
   tags:
-    - 2.2.3
+  - 2.2.3
 
-- name: 2.2.4 - Remove dhcp; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'isc-dhcp-server' ] }}"
+- name: Remove dhcp package on Debian-based systems
+  apt:
+    name: dhcp
+    state: absent
   when: dhcp_server is defined and not dhcp_server
   tags:
     - 2.2.4
 
-- name: 2.2.5 - Remove slapd; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'slapd' ] }}"
+- name: Remove slapd package on Debian-based systems
+  apt:
+    name: slapd
+    state: absent
   tags:
     - 2.2.5
 
-- name: 2.2.6,2.3.6 - Remove nfs server; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'nfs-kernel-server' ] + ['rpcbind'] }}"
+- name: Remove nfs package on Debian-based systems
+  apt:
+    name: nfs
+    state: absent
   when: nfs_server is defined and not nfs_server
   tags:
     - 2.2.6
 
-- name: 2.2.7 - Remove bind9; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'bind9' ] }}"
+- name: Remove bind9 package on Debian-based systems
+  apt:
+    name: bind9
+    state: absent
   when: dns_server is defined and not dns_server
   tags:
     - 2.2.7
 
-- name: 2.2.8 - Remove vsftpd; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'vsftpd' ] }}"
+- name: Remove vsftpd package on Debian-based systems
+  apt:
+    name: bind9
+    state: absent
   when: ftp_server is defined and not ftp_server
   tags:
     - 2.2.8
 
-- name: 2.2.9 - Remove httpd; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'apache2'] }}"
+- name: Remove httpd package on Debian-based systems
+  apt:
+    name: httpd
+    state: absent
   when: http_server is defined and not http_server
   tags:
     - 2.2.9
 
-- name: 2.2.10 - Remove dovecot; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'dovecot-imapd' ] + [ 'dovecot-pop3d'] }}"
+- name: Remove dovecot package on Debian-based systems
+  apt:
+    name: dovecot
+    state: absent
   when: email_server is defined and not email_server
   tags:
     - 2.2.10
 
-- name: 2.2.11 - Remove samba; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'samba' ] }}"
+- name: Remove samba package on Debian-based systems
+  apt:
+    name: samba
+    state: absent
   when: smb_server is defined and not smb_server
   tags:
     - 2.2.11
 
-- name: 2.2.12 - Remove squid; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'squid' ] }}"
+- name: Remove squid package on Debian-based systems
+  apt:
+    name: squid
+    state: absent
   tags:
     - 2.2.12
 
-- name: 2.2.13 - Remove snmp; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'snmp' ] }}"
+- name: Remove snmp package on Debian-based systems
+  apt:
+    name: snmp
+    state: absent
   tags:
     - 2.2.13
 
-- name: 2.2.14,2.3.1 - Remove nis; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'nis' ] }}"
+- name: Remove nis package on Debian-based systems
+  apt:
+    name: nis
+    state: absent
   tags:
     - 2.2.14
     - 2.3.1
 
-- name: 2.2.15 - Remove dnsmasq; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'dnsmasq' ] }}"
+- name: Remove dnsmasq package on Debian-based systems
+  apt:
+    name: dnsmasq
+    state: absent
   tags:
     - 2.2.15
 
-- name: 2.2.17 - Remove rsync; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'rsync' ] }}"
+- name: Remove rsync package on Debian-based systems
+  apt:
+    name: rsync
+    state: absent
   tags:
     - 2.2.17
 
-
-- name: 2.3.2 - Remove rsh; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'rsh-client' ] }}"
+- name: Remove rsh package on Debian-based systems
+  apt:
+    name: rsh
+    state: absent
   tags:
     - 2.3.2
 
-- name: 2.3.3 - Remove talk; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'talk' ] }}"
+- name: Remove talk package on Debian-based systems
+  apt:
+    name: talk
+    state: absent
   tags:
     - 2.3.3
 
-- name: 2.3.4 - Remove telnet; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'telnet' ] }}"
+- name: Remove telnet package on Debian-based systems
+  apt:
+    name: telnet
+    state: absent
   tags:
     - 2.3.4
 
-- name: 2.3.5 - Remove ldap-utils; add to removal list
-  ansible.builtin.set_fact:
-    unneeded_packages: "{{ unneeded_packages + [ 'ldap-utils' ] }}"
+- name: Remove ldap package on Debian-based systems
+  apt:
+    name: ldap
+    state: absent
   tags:
     - 2.3.5
-
-# With the list complete, use it with the system's package manager
-#  to remove packages from the system that are not needed.
-- name: Process removal list
-  ansible.builtin.apt:
-    name: "{{ unneeded_packages }}"
-    state: absent
-    purge: true
-  tags:
-    - 2.2.0
-    - 2.3.0
 
 # Cups should be remove per control 2.2.16, but it may not be able to due to
 #  dependencies, so disable the service instead
