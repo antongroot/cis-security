@@ -143,9 +143,9 @@
     block: "TMOUT={{ shell_timeout }}"
     marker: "# {mark} Ansible Managed CIS Timeout"
     create: true
-  owner: root
-  group: root
-  mode: 0644
+    owner: root
+    group: root
+    mode: '0644'
   loop:
     - /etc/bash.bashrc.local
     - /etc/profile.local
