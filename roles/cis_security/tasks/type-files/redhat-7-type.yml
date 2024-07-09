@@ -2192,7 +2192,7 @@
       when: ansible_distribution != "SLES"
 
     - name: 5.3.4 - Determine if we are currently using sha512 password
-      shell: grep -i "ENCRYPT_METHOD SHA512" /etc/login.defs | awk {'print $2'}
+      shell: /usr/bin/grep -i "ENCRYPT_METHOD SHA512" /etc/login.defs | /usr/bin/awk {'print $2'}
       register: sha512_exist
       changed_when: false
       when: ansible_distribution != "RedHat"
