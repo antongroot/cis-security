@@ -1088,7 +1088,7 @@
       ansible.builtin.command: /usr/bin/systemctl isolate multi-user.target
       register: isolate_out
       changed_when: isolate_out.changed
-      when: default_runlevel_out.stat is search("graphical.target") and not graphical_interface
+      when: default_runlevel_out is search("graphical.target") and not graphical_interface
       tags:
         - 2.2.2
 
@@ -1096,7 +1096,7 @@
       ansible.builtin.command: /usr/bin/systemctl isolate graphical.target
       register: isolate_out
       changed_when: isolate_out.changed
-      when: default_runlevel_out.stat is search("multi-user.target") and graphical_interface
+      when: default_runlevel_out is search("multi-user.target") and graphical_interface
       tags:
         - 2.2.2
 
