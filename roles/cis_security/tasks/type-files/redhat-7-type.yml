@@ -2189,11 +2189,26 @@
       ansible.builtin.command: authconfig --test
       register: sha512_exist
       changed_when: false
+      when: ansible_distribution != "SLES"
+
+    - name: 5.3.4 - Determine if we are currently using sha512 password
+      ansible.builtin.command: grep -i ^ENCR /etc/login.defs | awk {'print $2'}
+      register: sha512_exist
+      changed_when: false
+      when: ansible_distribution != "RedHat"
 
     - name: 5.3.4 - SHA-512 Password setting
       ansible.builtin.command: /usr/sbin/authconfig --enableshadow --passalgo sha512 --update
-      when: not sha512_exist.stdout is search("sha512")
+      when: not sha512_exist.stdout is search("sha512") and ansible_distribution != "SLES"
       failed_when: false
+
+    - name: 5.3.4 - SHA-512 Password setting
+      blockinfile:
+        path: /etc/login.defs
+        block: |
+          ENCRYPT_METHOD SHA512
+        insertafter: EOF
+      when: not sha512_exist.stdout is search("SHA512") and ansible_distribution != "RedHat"
 
 - name: 5.4.1.1 - Ensure password expiration is {{ password_expire_days }} days or less
   ansible.builtin.lineinfile:
