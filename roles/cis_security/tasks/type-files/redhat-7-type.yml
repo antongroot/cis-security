@@ -1064,8 +1064,8 @@
     # Find the current default run level. The systemctl module does not handle the
     #  get-default routine, so we are looking at the target of the symlink at /etc/systemd/system/default.target
     - name: 2.2.2 - get default runlevel
-      ansible.builtin.stat:
-        path: /etc/systemd/system/default.target
+      ansible.builtin.command:
+        cmd: systemctl get-default
       register: default_runlevel_out
       tags:
         - 2.2.2
@@ -1088,7 +1088,7 @@
       ansible.builtin.command: /usr/bin/systemctl isolate multi-user.target
       register: isolate_out
       changed_when: isolate_out.changed
-      when: default_runlevel_out.stat.lnk_target is search("graphical.target") and not graphical_interface
+      when: default_runlevel_out.stat is search("graphical.target") and not graphical_interface
       tags:
         - 2.2.2
 
@@ -1096,7 +1096,7 @@
       ansible.builtin.command: /usr/bin/systemctl isolate graphical.target
       register: isolate_out
       changed_when: isolate_out.changed
-      when: default_runlevel_out.stat.lnk_target is search("multi-user.target") and graphical_interface
+      when: default_runlevel_out.stat is search("multi-user.target") and graphical_interface
       tags:
         - 2.2.2
 
