@@ -113,7 +113,7 @@
       check_mode: true
       changed_when: false
       register: sha512_exist
-      failed_when: fals
+      failed_when: false
 
     - name: 5.3.4 - Determine if we are currently using sha512 password
       ansible.builtin.replace:
