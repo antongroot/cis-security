@@ -116,8 +116,8 @@ password_min_days: 1              # Common: Windows has this control listed as 1
 password_expire_days: 24         # Common: Windows has this control listed as 24 days
 password_warning_days: 7          # Common: Windows has this control listed as 'between 5 and 14 days'
 password_inactive_lock_days: 30   # Linux
-password_failed_attempts: 5       # RHEL 9: Number of attempts before locking account
-password_failed_time: 900         # RHEL 9: amount of time to lock an account that has exceeded failed attemps
+password_failed_attempts: 10       # RHEL 9: Number of attempts before locking account
+password_failed_time: 3600        # RHEL 9: amount of time to lock an account that has exceeded failed attemps
 password_history: 24              # Windows: number of passwords to remember.
 password_max_repeat: 24            # Linux: Ubuntu 22 only, number of same characters in a passwd
 account_lockout_duration: 15      # Windows:
