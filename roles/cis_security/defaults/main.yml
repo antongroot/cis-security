@@ -112,14 +112,14 @@ password_req_upper: true          # Linux
 password_req_lower: true          # Linux
 password_req_special: true        # Linux
 password_hash_alg: "yescrypt"      # Linux (RHEL 8/9), set password hashing algorithm, set to 'sha512' or 'yescrypt'
-password_min_days: 7              # Common: Windows has this control listed as 1 day
-password_expire_days: 365         # Common: Windows has this control listed as 24 days
+password_min_days: 1              # Common: Windows has this control listed as 1 day
+password_expire_days: 24         # Common: Windows has this control listed as 24 days
 password_warning_days: 7          # Common: Windows has this control listed as 'between 5 and 14 days'
 password_inactive_lock_days: 30   # Linux
 password_failed_attempts: 5       # RHEL 9: Number of attempts before locking account
 password_failed_time: 900         # RHEL 9: amount of time to lock an account that has exceeded failed attemps
 password_history: 24              # Windows: number of passwords to remember.
-password_max_repeat: 3            # Linux: Ubuntu 22 only, number of same characters in a passwd
+password_max_repeat: 24            # Linux: Ubuntu 22 only, number of same characters in a passwd
 account_lockout_duration: 15      # Windows:
 account_lockout_threshold: 10     # Windows:
 account_reset_duration: 15        # Windows:
