@@ -106,7 +106,7 @@ ssh_denied_users: "root"            # Linux: RHEL9, space separated list of user
 ssh_denied_groups: ""           # Linux: RHEL9, space separated list of users to add to DneyGroups list
 
 # Password and account settings, all settings below match controls
-password_min_length: 14           # Common
+password_min_length: 12           # Common
 password_req_digit: true          # Linux
 password_req_upper: true          # Linux
 password_req_lower: true          # Linux
